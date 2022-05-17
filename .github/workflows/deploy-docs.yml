@@ -35,8 +35,8 @@ jobs:
 
       - name: Deploy stable docs 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.5
+        if: startsWith(env.RELEASE_VERSION, 'v*')
         with:
-          if: startsWith(env.RELEASE_VERSION, 'v*')
           branch: gh-pages
           folder: html
           target-folder: ${{ env.RELEASE_VERSION }}
