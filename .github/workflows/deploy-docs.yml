@@ -24,10 +24,7 @@ jobs:
 
       - name: Set env
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-      - name: Test
-        run: |
-          echo $RELEASE_VERSION
-          echo ${{ env.RELEASE_VERSION }}
+
       - name: Deploy docs 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
@@ -36,10 +33,11 @@ jobs:
           target-folder: dev
           clean: true
 
-      # - name: Deploy docs 🚀
-      #   uses: JamesIves/github-pages-deploy-action@4.1.5
-      #   with:
-      #     branch: gh-pages
-      #     folder: html
-      #     target-folder: dev
-      #     clean: true
+      - name: Deploy docs 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          if: startsWith(env.RELEASE_VERSION, 'v*')
+          branch: gh-pages
+          folder: html
+          target-folder: ${{ env.RELEASE_VERSION }}
+          clean: true
