@@ -25,9 +25,9 @@ jobs:
       - name: Set env
         run: echo "TAG=${{ github.ref_name }}" >> $GITHUB_ENV
       - name: test
-        run: echo ${{ env.TAG%.*}}
+        run: echo ${{ env.TAG#.*}}
       # - name: get tag
-        # run: echo ${{ github.ref_name%.* }}
+        # run: echo ${{ github.ref_name#.* }}
 
       - name: Deploy dev docs 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.5
