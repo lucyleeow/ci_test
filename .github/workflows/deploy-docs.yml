@@ -39,7 +39,7 @@ jobs:
 
       - name: Deploy stable docs 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.5
-        if: startsWith($TAG, 'v*')
+        if: startsWith(env.TAG, 'v*')
         with:
           branch: gh-pages
           folder: html
