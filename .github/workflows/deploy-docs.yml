@@ -25,7 +25,10 @@ jobs:
       - name: Set env
         run: echo "TAG=${{ github.ref_name }}" >> $GITHUB_ENV
       - name: test
-        run: echo "${TAG%.*}".x
+        run: |
+          DOC_DIR="${TAG%.*}".x
+          DOC_DIR="${DOC_DIR:1}"
+          echo $DOC_DIR
       # - name: get tag
         # run: echo ${{ github.ref_name#.* }}
 
