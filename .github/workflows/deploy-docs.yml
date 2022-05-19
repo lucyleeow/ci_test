@@ -27,7 +27,7 @@ jobs:
       - name: test
         run: |
           DOC_DIR="${TAG%.*}".x
-          DOC_DIR="${DOC_DIR:1}" >> $GITHUB_ENV
+          echo "DOC_DIR=${DOC_DIR:1}" >> $GITHUB_ENV
       - name: test vars
         run: |
           echo $TAG
