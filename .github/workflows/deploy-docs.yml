@@ -27,8 +27,7 @@ jobs:
       - name: test
         run: |
           DOC_DIR="${TAG%.*}".x
-          DOC_DIR="${DOC_DIR:1}"
-          echo $DOC_DIR
+          DOC_DIR="${DOC_DIR:1}" >> $GITHUB_ENV
       # - name: get tag
         # run: echo ${{ github.ref_name#.* }}
 
@@ -46,5 +45,5 @@ jobs:
         with:
           branch: gh-pages
           folder: html
-          target-folder: $TAG
+          target-folder: ${{ env.DOC_DIR }}
           clean: true
