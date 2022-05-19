@@ -26,6 +26,7 @@ jobs:
         run: echo "TAG=${{ github.ref_name }}" >> $GITHUB_ENV
       - name: test
         run: |
+          echo $TAG
           DOC_DIR="${TAG%.*}".x
           DOC_DIR="${DOC_DIR:1}" >> $GITHUB_ENV
       # - name: get tag
@@ -41,7 +42,7 @@ jobs:
 
       - name: Deploy stable docs 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.5
-        if: startsWith(env.TAG, 'v*')
+        if: startsWith(env.TAG, 'v')
         with:
           branch: gh-pages
           folder: html
